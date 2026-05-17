@@ -278,23 +278,23 @@ class DateTimePickerViewModel extends BaseViewModel {
 
   int _findWeekIndex(int dateIndex) {
     if (dateSlots != null && dateSlots!.isNotEmpty) {
-      return dateSlots!.indexWhere((w) =>
-          w!.days!.where((d) => d.index == dateIndex).toList().isNotEmpty);
+      return dateSlots!.indexWhere(
+          (w) => w!.days!.any((d) => d.index == dateIndex));
     } else {
       return 0;
     }
   }
 
   DateTime? _findDate(int dateIndex) {
-    // print('_findDate => $dateIndex');
     if (dateSlots != null && dateSlots!.isNotEmpty) {
-      final w = dateSlots!
-          .where((e) =>
-              e!.days!.where((d) => d.index == dateIndex).toList().length == 1)
-          .toList();
-
-      if (w.length == 1) {
-        return w[0]!.days!.firstWhere((e) => e.index == dateIndex).date;
+      for (final week in dateSlots!) {
+        if (week != null && week.days != null) {
+          for (final day in week.days!) {
+            if (day.index == dateIndex) {
+              return day.date;
+            }
+          }
+        }
       }
     }
 
