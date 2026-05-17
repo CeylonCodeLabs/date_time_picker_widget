@@ -22,10 +22,6 @@ class DateWeekView extends ViewModelWidget<DateTimePickerViewModel> {
           return ListView.builder(
               //physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, wIndex) {
-                print(
-                    '$wIndex + $index * ${viewModel.numberOfWeeksToDisplay} = '
-                    '${wIndex + (index * viewModel.numberOfWeeksToDisplay)}');
-                print('${viewModel.dateSlots?.length}');
                 return Container(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   height: 53,
