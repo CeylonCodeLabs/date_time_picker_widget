@@ -21,20 +21,21 @@ class DateWeekView extends ViewModelWidget<DateTimePickerViewModel> {
                 .round(),
         itemBuilder: (context, index) {
           return ListView.builder(
-            //physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, wIndex) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                height: 53,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) {
-                    return SizedBox(width: w);
-                  },
-                  scrollDirection: Axis.horizontal,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: viewModel.dateSlots![wIndex + index]!.days!.length,
-                  itemBuilder: (context, i) {
-                    final e = viewModel.dateSlots![wIndex + index]!.days![i];
+              //physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, wIndex) {
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: 53,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return SizedBox(width: w);
+                    },
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount:
+                        viewModel.dateSlots![wIndex + index]!.days!.length,
+                    itemBuilder: (context, i) {
+                      final e = viewModel.dateSlots![wIndex + index]!.days![i];
 
                     return Center(
                       child: InkWell(
