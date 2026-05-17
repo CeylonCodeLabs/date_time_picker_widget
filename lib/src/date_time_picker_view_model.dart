@@ -191,13 +191,6 @@ class DateTimePickerViewModel extends BaseViewModel {
       _endDate!,
     ).diff(Jiffy.parseFromDateTime(_startDate!), unit: Unit.week).toInt();
 
-    // print('currentDateTime => $currentDateTime');
-    // print('_currentDateTime => $_currentDateTime');
-    // print('_startDate => $_startDate');
-    // print('_endDate => $_endDate');
-    // print('numberOfDays => $numberOfDays');
-    // print('numberOfWeeks => $numberOfWeeks');
-
     int dateIndex = 0;
     Week? week;
 
@@ -219,7 +212,6 @@ class DateTimePickerViewModel extends BaseViewModel {
 
       if (date.difference(_currentDateTime).inDays == 0) {
         dateIndex = i;
-        // print('dateIndex => $dateIndex');
       }
 
       if (i + 1 == numberOfDays) {
@@ -289,8 +281,7 @@ class DateTimePickerViewModel extends BaseViewModel {
   int _findWeekIndex(int dateIndex) {
     if (dateSlots != null && dateSlots!.isNotEmpty) {
       return dateSlots!.indexWhere(
-        (w) => w!.days!.any((d) => d.index == dateIndex),
-      );
+          (w) => w!.days!.any((d) => d.index == dateIndex));
     } else {
       return 0;
     }
@@ -299,8 +290,8 @@ class DateTimePickerViewModel extends BaseViewModel {
   DateTime? _findDate(int dateIndex) {
     if (dateSlots != null && dateSlots!.isNotEmpty) {
       for (final week in dateSlots!) {
-        if (week?.days != null) {
-          for (final day in week!.days!) {
+        if (week != null && week.days != null) {
+          for (final day in week.days!) {
             if (day.index == dateIndex) {
               return day.date;
             }
