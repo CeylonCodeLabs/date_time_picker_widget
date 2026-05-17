@@ -42,7 +42,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _color = Colors.blue;
   String _d1 = '', _d2 = '';
   String _t1 = '', _t2 = '';
-  bool _material3 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
           primary: _color,
           secondary: _color,
         ),
-        useMaterial3: _material3,
       ),
       child: Scaffold(
         appBar: AppBar(
@@ -66,19 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(height: 24),
-                  CheckboxListTile(
-                    value: _material3,
-                    title: Text(
-                      'Use Material 3',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _material3 = value ?? true;
-                      });
-                    },
-                  ),
                   const SizedBox(height: 24),
                   Text(
                     'Color Pallet',
