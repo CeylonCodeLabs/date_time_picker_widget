@@ -1,6 +1,6 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:date_time_picker_widget/src/date_time_picker_view_model.dart';
 import 'package:date_time_picker_widget/src/date_time_picker_type.dart';
+import 'package:date_time_picker_widget/src/date_time_picker_view_model.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DateTimePickerViewModel - getNextDate', () {
