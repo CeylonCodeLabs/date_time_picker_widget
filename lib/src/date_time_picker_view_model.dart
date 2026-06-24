@@ -245,13 +245,14 @@ class DateTimePickerViewModel extends BaseViewModel {
     bool toEnd = false,
   }) {
     final List<Date> dates = [];
+    final int targetWeek = Jiffy.parseFromDateTime(date).weekOfYear;
 
     if (toStart) {
       int i = 1;
       while (Jiffy.parseFromDateTime(
             date.subtract(Duration(days: i)),
           ).weekOfYear ==
-          Jiffy.parseFromDateTime(date).weekOfYear) {
+          targetWeek) {
         dates.insert(
           0,
           Date(
@@ -267,7 +268,7 @@ class DateTimePickerViewModel extends BaseViewModel {
     if (toEnd) {
       int i = 1;
       while (Jiffy.parseFromDateTime(date.add(Duration(days: i))).weekOfYear ==
-          Jiffy.parseFromDateTime(date).weekOfYear) {
+          targetWeek) {
         dates.add(
           Date(index: -1, date: date.add(Duration(days: i)), enabled: false),
         );
@@ -280,8 +281,8 @@ class DateTimePickerViewModel extends BaseViewModel {
 
   int _findWeekIndex(int dateIndex) {
     if (dateSlots != null && dateSlots!.isNotEmpty) {
-      return dateSlots!.indexWhere(
-          (w) => w!.days!.any((d) => d.index == dateIndex));
+      return dateSlots!
+          .indexWhere((w) => w!.days!.any((d) => d.index == dateIndex));
     } else {
       return 0;
     }
@@ -432,9 +433,8 @@ class DateTimePickerViewModel extends BaseViewModel {
 
   void onClickNext() {
     final dt = Jiffy.parseFromDateTime(selectedDate!).add(months: 1);
-    final diff = dt
-        .diff(Jiffy.parseFromDateTime(selectedDate!), unit: Unit.day)
-        .toInt();
+    final diff =
+        dt.diff(Jiffy.parseFromDateTime(selectedDate!), unit: Unit.day).toInt();
 
     if (numberOfDays < selectedDateIndex + diff) {
       selectedDateIndex = numberOfDays - 1;
