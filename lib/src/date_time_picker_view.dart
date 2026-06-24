@@ -50,17 +50,18 @@ class DateTimePicker extends StackedView<DateTimePickerViewModel> {
       BuildContext context, DateTimePickerViewModel viewModel, Widget? child) {
     if (type == DateTimePickerType.Both &&
         (onDateChanged == null || onTimeChanged == null)) {
-      throw Exception('Ensure both onDateChanged and onTimeChanged are not null'
+      throw ArgumentError(
+          'Ensure both onDateChanged and onTimeChanged are not null'
           ' when type is DateTimePickerType.Both');
     }
 
     if (type == DateTimePickerType.Date && onDateChanged == null) {
-      throw Exception('Ensure onDateChanged is not null when type is '
+      throw ArgumentError('Ensure onDateChanged is not null when type is '
           'DateTimePickerType.Date');
     }
 
     if (type == DateTimePickerType.Time && onTimeChanged == null) {
-      throw Exception('Ensure onTimeChanged is not null when type is '
+      throw ArgumentError('Ensure onTimeChanged is not null when type is '
           'DateTimePickerType.Time');
     }
 
@@ -68,26 +69,26 @@ class DateTimePicker extends StackedView<DateTimePickerViewModel> {
         startDate != null &&
         !(initialSelectedDate!.isAfter(startDate!) ||
             initialSelectedDate!.isAtSameMomentAs(startDate!))) {
-      throw Exception(
+      throw ArgumentError(
           'initialSelectedDate must be a date after or equals startDate');
     }
 
     if (initialSelectedDate != null &&
         endDate != null &&
         (!initialSelectedDate!.isBefore(endDate!))) {
-      throw Exception('initialSelectedDate must be a date before endDate');
+      throw ArgumentError('initialSelectedDate must be a date before endDate');
     }
 
     if (startDate != null && endDate != null && !endDate!.isAfter(startDate!)) {
-      throw Exception('endDate must be a date after startDate');
+      throw ArgumentError('endDate must be a date after startDate');
     }
 
     if (startTime != null && endTime != null && !endTime!.isAfter(startTime!)) {
-      throw Exception('endTime must be a time after startTime');
+      throw ArgumentError('endTime must be a time after startTime');
     }
 
     if (customStringWeekdays != null && customStringWeekdays!.length != 7) {
-      throw Exception('customStringWeekdays must containt 7 items');
+      throw ArgumentError('customStringWeekdays must containt 7 items');
     }
 
     return LayoutBuilder(
